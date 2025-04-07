@@ -1,0 +1,41 @@
+.movie-info {
+  flex: 1;
+  min-width: 300px;
+  margin-bottom: var(--spacing-md);
+}
+
+.movie-info h3 {
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-color);
+  font-size: 1.25rem;
+}
+
+.synopsis {
+  line-height: 1.6;
+  color: var(--text-color);
+  margin-bottom: var(--spacing-md);
+}
+
+.additional-info {
+  color: var(--text-color-secondary);
+  margin-top: var(--spacing-md);
+}
+
+.additional-info p {
+  margin-bottom: var(--spacing-xs);
+}
+
+@media (max-width: 511px) {
+  .movie-info {
+    min-width: 0;
+  }
+
+  .synopsis {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .additional-info {
+    font-size: 0.9rem;
+  }
+} 

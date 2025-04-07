@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del Fondo - StreaMind</title>
+    <style>
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: #121212;
+            color: #FFFFFF;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        h1 {
+            color: #fdbf38;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+    </style>
+</head>
+<body>
+    <h1>Fondo de Pósters de Películas</h1>
+    <p>Este archivo proporciona información sobre la imagen de fondo utilizada en la aplicación StreaMind.</p>
+    
+    <div class="image-container">
+        <img src="./movie-posters-background.jpg" alt="Collage de pósters de películas">
+    </div>
+    
+    <h2>Uso en la aplicación</h2>
+    <p>La imagen se utiliza como fondo en toda la aplicación, con un overlay oscuro para mejorar la legibilidad del contenido. Se implementa mediante CSS en el archivo <code>style.css</code>.</p>
+    
+    <h2>Técnica de implementación</h2>
+    <p>Para mostrar la imagen como fondo con un overlay oscuro, se usa la siguiente técnica CSS:</p>
+    <pre>
+body {
+  background-image: url('/movie-posters-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(18, 18, 18, 0.92);
+  z-index: -1;
+}
+    </pre>
+    
+    <p>Esta implementación asegura que la imagen de fondo se muestre correctamente en todos los dispositivos mientras mantiene la legibilidad del contenido.</p>
+</body>
+</html> 

@@ -1,0 +1,18 @@
+.poster-container {
+  position: relative;
+}
+
+.poster-container img {
+  width: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 511px) {
+  .poster-container img {
+    max-height: 375px;
+    object-fit: cover;
+  }
+}
+
+/* La media query no es necesaria aquí ya que está en MovieDetailContent.css */ 

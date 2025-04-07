@@ -1,0 +1,76 @@
+.login-section-container {
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+  text-align: center;
+  border: 1px dashed rgba(var(--primary-color-rgb), 0.3);
+}
+
+.login-message {
+  text-align: center;
+  margin-top: var(--spacing-md);
+  color: var(--text-color-secondary);
+  font-style: italic;
+}
+
+.login-button {
+  box-shadow: inset 0 0 0 2px rgba(var(--primary-color-rgb), 0.5);
+  color: var(--primary-color);
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  position: relative;
+  cursor: pointer;
+  line-height: 1.5;
+  font-weight: 600;
+  padding: 0.8em 1.5em;
+  border-radius: var(--border-radius);
+  transition: color 0.25s ease, background-color 0.25s ease;
+  overflow: hidden;
+  margin-top: var(--spacing-md);
+  min-width: 150px;
+}
+
+.login-button::before, 
+.login-button::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  right: 0;
+  transition: border-color 0s, width 0.2s, height 0.2s;
+}
+
+.login-button::before {
+  border-bottom-width: 3px;
+  border-left-width: 3px;
+}
+
+.login-button::after {
+  border-top-width: 3px;
+  border-right-width: 3px;
+}
+
+.login-button:hover {
+  color: #FFFFFF;
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+}
+
+.login-button:hover::before, 
+.login-button:hover::after {
+  border-color: var(--primary-color);
+  width: 100%;
+  height: 100%;
+}
+
+.login-button:hover::before {
+  transition-delay: 0s, 0s, 0.2s;
+}
+
+.login-button:hover::after {
+  transition-delay: 0s, 0.2s, 0s;
+} 

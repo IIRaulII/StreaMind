@@ -1,0 +1,38 @@
+.movie-header {
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: var(--spacing-sm);
+  display: inline-block;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+  background: none;
+}
+
+.movie-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-color);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.meta-info {
+  display: flex;
+  gap: var(--spacing-md);
+  color: var(--text-color-secondary);
+}
+
+.meta-info .year:after {
+  content: '•';
+  margin-left: var(--spacing-md);
+} 

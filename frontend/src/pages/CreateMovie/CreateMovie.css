@@ -1,0 +1,386 @@
+.create-movie-page {
+  padding: var(--spacing-xl) 0;
+}
+
+.page-header {
+  margin-bottom: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: var(--spacing-sm);
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+  background: none;
+}
+
+.movie-form {
+  background-color: var(--bg-color-light);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-xl);
+  box-shadow: var(--box-shadow);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: var(--spacing-sm);
+  background-color: var(--bg-color);
+  border: 1px solid #3A3A3A;
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+  font-family: var(--font-family);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+}
+
+/* Botón de cancelar con efecto de borde */
+.cancel-button {
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+  color: var(--text-color);
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  position: relative;
+  cursor: pointer;
+  line-height: 1.5;
+  font-weight: 600;
+  padding: 0.8em 1.5em;
+  border-radius: var(--border-radius);
+  transition: color 0.25s ease, background-color 0.25s ease;
+  overflow: hidden;
+}
+
+.cancel-button::before, 
+.cancel-button::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  right: 0;
+  transition: border-color 0s, width 0.2s, height 0.2s;
+}
+
+.cancel-button::before {
+  border-bottom-width: 3px;
+  border-left-width: 3px;
+}
+
+.cancel-button::after {
+  border-top-width: 3px;
+  border-right-width: 3px;
+}
+
+.cancel-button:hover {
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.cancel-button:hover::before, 
+.cancel-button:hover::after {
+  border-color: #FFFFFF;
+  width: 100%;
+  height: 100%;
+}
+
+.cancel-button:hover::before {
+  transition-delay: 0s, 0s, 0.2s;
+}
+
+.cancel-button:hover::after {
+  transition-delay: 0s, 0.2s, 0s;
+}
+
+/* Botón de guardar con efecto de borde */
+.submit-button {
+  box-shadow: inset 0 0 0 2px rgba(var(--primary-color-rgb), 0.5);
+  color: var(--primary-color);
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  position: relative;
+  cursor: pointer;
+  line-height: 1.5;
+  font-weight: 600;
+  padding: 0.8em 1.5em;
+  border-radius: var(--border-radius);
+  transition: color 0.25s ease, background-color 0.25s ease;
+  overflow: hidden;
+}
+
+.submit-button::before, 
+.submit-button::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  right: 0;
+  transition: border-color 0s, width 0.2s, height 0.2s;
+}
+
+.submit-button::before {
+  border-bottom-width: 3px;
+  border-left-width: 3px;
+}
+
+.submit-button::after {
+  border-top-width: 3px;
+  border-right-width: 3px;
+}
+
+.submit-button:hover {
+  color: #FFFFFF;
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+}
+
+.submit-button:hover::before, 
+.submit-button:hover::after {
+  border-color: var(--primary-color);
+  width: 100%;
+  height: 100%;
+}
+
+.submit-button:hover::before {
+  transition-delay: 0s, 0s, 0.2s;
+}
+
+.submit-button:hover::after {
+  transition-delay: 0s, 0.2s, 0s;
+}
+
+.submit-button:disabled {
+  box-shadow: inset 0 0 0 2px rgba(58, 58, 58, 0.5);
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #666;
+  cursor: not-allowed;
+}
+
+.submit-button:disabled::before,
+.submit-button:disabled::after {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .movie-form {
+    padding: var(--spacing-lg);
+  }
+  
+  .form-buttons {
+    flex-direction: column;
+  }
+  
+  .form-buttons button {
+    width: 100%;
+  }
+}
+
+/* Sección de póster */
+.poster-section {
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: var(--border-radius);
+}
+
+.section-title {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-color);
+  font-size: 1.25rem;
+}
+
+.separator {
+  position: relative;
+  text-align: center;
+  margin: var(--spacing-md) 0;
+  height: 20px;
+}
+
+.separator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #3A3A3A;
+}
+
+.separator span {
+  position: relative;
+  background-color: var(--bg-color-light);
+  color: var(--text-color-secondary);
+  padding: 0 var(--spacing-md);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.file-upload-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.file-upload-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  box-shadow: inset 0 0 0 2px rgba(var(--primary-color-rgb), 0.3);
+  color: var(--primary-color);
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  position: relative;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  transition: color 0.25s ease, background-color 0.25s ease;
+  overflow: hidden;
+  min-width: 200px;
+}
+
+.file-upload-button::before, 
+.file-upload-button::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  right: 0;
+  transition: border-color 0s, width 0.2s, height 0.2s;
+}
+
+.file-upload-button::before {
+  border-bottom-width: 3px;
+  border-left-width: 3px;
+}
+
+.file-upload-button::after {
+  border-top-width: 3px;
+  border-right-width: 3px;
+}
+
+.file-upload-button:hover {
+  color: #FFFFFF;
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+}
+
+.file-upload-button:hover::before, 
+.file-upload-button:hover::after {
+  border-color: var(--primary-color);
+  width: 100%;
+  height: 100%;
+}
+
+.file-upload-button:hover::before {
+  transition-delay: 0s, 0s, 0.2s;
+}
+
+.file-upload-button:hover::after {
+  transition-delay: 0s, 0.2s, 0s;
+}
+
+.file-upload-button i {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+.poster-preview {
+  position: relative;
+  width: 200px;
+  margin: var(--spacing-md) auto;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+}
+
+.poster-preview img {
+  width: 100%;
+  display: block;
+}
+
+.remove-preview {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.remove-preview:hover {
+  background-color: rgba(var(--primary-color-rgb), 0.8);
+  color: #FFFFFF;
+  transform: scale(1.1);
+}
+
+.poster-url-group.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+  .poster-preview {
+    width: 150px;
+  }
+} 

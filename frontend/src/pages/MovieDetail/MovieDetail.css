@@ -1,0 +1,9 @@
+/* Estilos a nivel de la página principal */
+.movie-detail-page {
+  padding: var(--spacing-xl) 0;
+}
+
+/* Para compatibilidad con el subcomponente MovieContainer */
+.movie-container.hidden {
+  display: none !important;
+} 

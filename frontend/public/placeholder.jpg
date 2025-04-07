@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900">
+  <rect width="600" height="900" fill="#1F1F1F" />
+  <rect x="150" y="300" width="300" height="300" rx="20" fill="#3A3A3A" />
+  <path d="M300 250 L350 350 L250 350 Z" fill="#5D6CCF" />
+  <path d="M300 650 L350 550 L250 550 Z" fill="#FF7E86" />
+  <text x="300" y="470" font-family="Inter, Arial, sans-serif" font-size="48" fill="#FFFFFF" text-anchor="middle">Sin imagen</text>
+</svg> 

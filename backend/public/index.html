@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+  <title>StreaMind API - Test</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>StreaMind API Test</h1>
+  <p>Utiliza los botones para probar las conexiones con la API:</p>
+  
+  <div>
+    <button id="testApi">Probar Conexión API</button>
+    <button id="testTMDb">Probar Búsqueda TMDb</button>
+  </div>
+  
+  <h3>Resultado:</h3>
+  <pre id="result">Esperando prueba...</pre>
+  
+  <script>
+    document.getElementById('testApi').addEventListener('click', async () => {
+      const resultDiv = document.getElementById('result');
+      resultDiv.textContent = 'Conectando a la API...';
+      
+      try {
+        const response = await fetch('http://localhost:5000/');
+        const data = await response.json();
+        
+        resultDiv.textContent = JSON.stringify(data, null, 2);
+        console.log('Respuesta de la API:', data);
+      } catch (error) {
+        resultDiv.textContent = 'Error al conectar con la API: ' + error.message;
+        console.error('Error:', error);
+      }
+    });
+    
+    document.getElementById('testTMDb').addEventListener('click', async () => {
+      const resultDiv = document.getElementById('result');
+      resultDiv.textContent = 'Buscando películas en TMDb...';
+      
+      try {
+        const response = await fetch('http://localhost:5000/api/movies/search?query=matrix');
+        const data = await response.json();
+        
+        if (data.success) {
+          resultDiv.textContent = `Películas encontradas: ${data.count}\n\nPrimera película: ${data.data[0]?.title || 'N/A'}\n\nDatos completos: ${JSON.stringify(data, null, 2)}`;
+        } else {
+          resultDiv.textContent = 'Error: ' + data.message;
+        }
+        
+        console.log('Respuesta de TMDb:', data);
+      } catch (error) {
+        resultDiv.textContent = 'Error al conectar con TMDb: ' + error.message;
+        console.error('Error:', error);
+      }
+    });
+  </script>
+</body>
+</html> 

@@ -1,0 +1,32 @@
+.error-section {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.error-section.hidden {
+  display: none !important;
+}
+
+.error-message {
+  color: #d32f2f;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.error-section button {
+  background-color: #1e88e5;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.error-section button:hover {
+  background-color: #1565c0;
+} 

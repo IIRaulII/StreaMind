@@ -1,0 +1,119 @@
+.import-section {
+  margin-top: var(--spacing-md);
+}
+
+.import-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-md);
+  width: 100%;
+}
+
+.import-button {
+  box-shadow: inset 0 0 0 2px rgba(var(--primary-color-rgb), 0.5);
+  color: var(--primary-color);
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  position: relative;
+  cursor: pointer;
+  line-height: 1.5;
+  font-weight: 600;
+  padding: 0.8em 1.5em;
+  border-radius: var(--border-radius);
+  transition: color 0.25s ease, background-color 0.25s ease;
+  overflow: hidden;
+  width: auto;
+  min-width: 200px;
+}
+
+.import-button::before, 
+.import-button::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  right: 0;
+  transition: border-color 0s, width 0.2s, height 0.2s;
+}
+
+.import-button::before {
+  border-bottom-width: 3px;
+  border-left-width: 3px;
+}
+
+.import-button::after {
+  border-top-width: 3px;
+  border-right-width: 3px;
+}
+
+.import-button:hover {
+  color: #FFFFFF;
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+}
+
+.import-button:hover::before, 
+.import-button:hover::after {
+  border-color: var(--primary-color);
+  width: 100%;
+  height: 100%;
+}
+
+.import-button:hover::before {
+  transition-delay: 0s, 0s, 0.2s;
+}
+
+.import-button:hover::after {
+  transition-delay: 0s, 0.2s, 0s;
+}
+
+.login-section {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.login-message {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.login-button {
+  padding: 8px 16px;
+  background-color: #1e88e5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #1565c0;
+}
+
+.view-collection-button {
+  box-shadow: inset 0 0 0 2px rgba(var(--primary-color-rgb), 0.5);
+  color: var(--primary-color);
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  position: relative;
+  cursor: pointer;
+  line-height: 1.5;
+  font-weight: 600;
+  padding: 0.8em 1.5em;
+  border-radius: var(--border-radius);
+  transition: color 0.25s ease, background-color 0.25s ease;
+  overflow: hidden;
+  min-width: 200px;
+}
+
+.view-collection-button:hover {
+  background-color: #0288d1;
+} 

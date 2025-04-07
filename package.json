@@ -1,0 +1,11 @@
+{
+  "name": "streamind",
+  "version": "1.0.0",
+  "description": "Aplicación de memoria para películas",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "dev": "cd frontend && npm run dev"
+  },
+  "author": "",
+  "license": "ISC"
+}

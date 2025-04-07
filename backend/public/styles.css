@@ -1,0 +1,32 @@
+/* Estilos para la página de prueba de API */
+body {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  color: #1282a2;
+}
+
+button {
+  background-color: #1282a2;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 10px 5px 10px 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0a1128;
+}
+
+pre {
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 4px;
+  overflow-x: auto;
+} 
