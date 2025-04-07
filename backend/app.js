@@ -22,9 +22,23 @@ const app = express();
 // Middleware para parsear JSON
 app.use(express.json());
 
-// Configurar CORS para permitir todas las solicitudes
+// Configurar CORS según el entorno
+const allowedOrigins = process.env.NODE_ENV === 'production'
+  ? ['https://streamind.netlify.app', process.env.FRONTEND_URL]
+  : ['http://localhost:5173', 'http://localhost:3000', '*'];
+
 app.use(cors({
-  origin: '*', // Permitir solicitudes desde cualquier origen
+  origin: function(origin, callback) {
+    // permitir solicitudes sin origen (como aplicaciones móviles o curl)
+    if(!origin) return callback(null, true);
+    
+    // comprobar si el origen está permitido
+    if(allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('No permitido por CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true

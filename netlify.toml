@@ -1,0 +1,19 @@
+[build]
+  base = "frontend/"
+  publish = "dist/"
+  command = "npm run build"
+
+# Redirecciones para SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Redirigir las peticiones a la API al backend (para entorno de desarrollo)
+# En producción necesitarás configurar esto para apuntar a tu API desplegada
+[[redirects]]
+  from = "/api/*"
+  to = "https://tu-backend-desplegado.com/api/:splat"
+  status = 200
+  force = true
+  headers = {Access-Control-Allow-Origin = "*"} 

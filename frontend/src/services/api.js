@@ -1,9 +1,15 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
+// Determinar la URL base según el entorno
+const API_URL = import.meta.env.VITE_API_URL || 
+                (window.location.hostname === 'localhost' 
+                  ? 'http://localhost:5000/api'
+                  : '/api');
+
 // Configuración base para axios
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json'
   }
