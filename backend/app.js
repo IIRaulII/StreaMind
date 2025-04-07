@@ -24,12 +24,7 @@ app.use(express.json());
 
 // Configurar CORS para permitir todas las solicitudes
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'http://localhost:5174',
-    'https://streamind.netlify.app', // Añade aquí tu dominio de Netlify
-    process.env.FRONTEND_URL // Para configurar vía variable de entorno
-  ],
+  origin: '*', // Permitir solicitudes desde cualquier origen
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
