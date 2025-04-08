@@ -119,6 +119,16 @@ router
 
 // Inicializar la aplicación cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
+  // Fix para iOS: interceptar eventos de navegación y forzar el scroll
+  window.addEventListener('popstate', () => {
+    // Forzar scroll al inicio cuando se utiliza la navegación del historial
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      if (document.body) document.body.scrollTop = 0;
+      if (document.documentElement) document.documentElement.scrollTop = 0;
+    }, 100);
+  });
+  
   // Iniciar el router
   router.init();
 }); 

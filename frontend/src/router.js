@@ -25,20 +25,44 @@ export default class Router {
   // Navega a una ruta específica
   navigate(path) {
     window.history.pushState({}, '', path);
-    // Técnica más agresiva para hacer scroll al inicio 
-    // que funciona mejor en dispositivos móviles
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'auto'
-      });
-      // Solución alternativa para iOS
-      document.body.scrollTop = 0;
-      // Solución para la mayoría de navegadores
-      document.documentElement.scrollTop = 0;
-    }, 100);
+    
+    // Forzar scroll al inicio con un enfoque específico para iOS
+    this.resetScroll();
+    
     return this.handleRoute(path);
+  }
+
+  // Método específico para resetear el scroll que funciona en iOS
+  resetScroll() {
+    // Primera ejecución inmediata
+    this.executeScrollReset();
+    
+    // Múltiples intentos con tiempos diferentes para asegurar que funcione en iOS
+    setTimeout(() => this.executeScrollReset(), 0);
+    setTimeout(() => this.executeScrollReset(), 50);
+    setTimeout(() => this.executeScrollReset(), 100);
+    setTimeout(() => this.executeScrollReset(), 500);
+  }
+  
+  // Ejecutar todas las técnicas posibles de reset de scroll
+  executeScrollReset() {
+    // 1. Scroll usando window
+    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'auto'
+    });
+    
+    // 2. Scroll usando document.body (importante para iOS)
+    if (document.body) document.body.scrollTop = 0;
+    
+    // 3. Scroll usando documentElement (la mayoría de navegadores)
+    if (document.documentElement) document.documentElement.scrollTop = 0;
+    
+    // 4. Scroll usando getElementById (enfoque alternativo)
+    const appElement = document.getElementById('app');
+    if (appElement) appElement.scrollTop = 0;
   }
 
   // Maneja la ruta actual
@@ -80,19 +104,8 @@ export default class Router {
       // Renderizar la nueva vista
       matchedRoute.callback(container, params);
 
-      // Técnica más agresiva para hacer scroll al inicio 
-      // que funciona mejor en dispositivos móviles
-      setTimeout(() => {
-        window.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: 'auto'
-        });
-        // Solución alternativa para iOS
-        document.body.scrollTop = 0;
-        // Solución para la mayoría de navegadores
-        document.documentElement.scrollTop = 0;
-      }, 100);
+      // Forzar scroll al inicio después de renderizar
+      this.resetScroll();
     }
     
     return this;
