@@ -25,8 +25,19 @@ export default class Router {
   // Navega a una ruta específica
   navigate(path) {
     window.history.pushState({}, '', path);
-    // Hacer scroll al inicio de la página cuando se navega
-    window.scrollTo(0, 0);
+    // Técnica más agresiva para hacer scroll al inicio 
+    // que funciona mejor en dispositivos móviles
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'auto'
+      });
+      // Solución alternativa para iOS
+      document.body.scrollTop = 0;
+      // Solución para la mayoría de navegadores
+      document.documentElement.scrollTop = 0;
+    }, 100);
     return this.handleRoute(path);
   }
 
@@ -69,8 +80,19 @@ export default class Router {
       // Renderizar la nueva vista
       matchedRoute.callback(container, params);
 
-      // Hacer scroll al inicio de la página después de renderizar
-      window.scrollTo(0, 0);
+      // Técnica más agresiva para hacer scroll al inicio 
+      // que funciona mejor en dispositivos móviles
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'auto'
+        });
+        // Solución alternativa para iOS
+        document.body.scrollTop = 0;
+        // Solución para la mayoría de navegadores
+        document.documentElement.scrollTop = 0;
+      }, 100);
     }
     
     return this;

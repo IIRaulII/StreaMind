@@ -32,6 +32,8 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  scroll-behavior: auto !important;
+  overflow-x: hidden;
 }
 
 body {
@@ -52,6 +54,8 @@ body {
   -webkit-overflow-scrolling: touch;
   /* Asegurar que el contenido es siempre scrollable */
   overflow-y: auto;
+  /* Establecer scroll-behavior en HTML para que no lo herede */
+  scroll-behavior: auto !important;
 }
 
 /* Overlay oscuro sobre el fondo para mejorar la legibilidad */
