@@ -25,7 +25,7 @@ export default class MovieCard {
     if (this.movie.posterUrl) {
       poster.src = this.movie.posterUrl.startsWith('http') 
         ? this.movie.posterUrl 
-        : `http://localhost:5000${this.movie.posterUrl}`;
+        : `${import.meta.env.VITE_API_URL}${this.movie.posterUrl}`;
     } else if (this.movie.poster_path) {
       // Para resultados de búsqueda de TMDb
       poster.src = `https://image.tmdb.org/t/p/w500${this.movie.poster_path}`;

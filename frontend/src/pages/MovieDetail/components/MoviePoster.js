@@ -14,7 +14,7 @@ export default class MoviePoster {
     if (this.movie.posterUrl) {
       poster.src = this.movie.posterUrl.startsWith('http') 
         ? this.movie.posterUrl 
-        : `http://localhost:5000${this.movie.posterUrl}`;
+        : `${import.meta.env.VITE_API_URL}${this.movie.posterUrl}`;
     } else {
       poster.src = '/placeholder.jpg';
     }

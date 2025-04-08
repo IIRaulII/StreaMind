@@ -41,7 +41,7 @@ export default class Profile {
       const avatar = document.createElement('img');
       avatar.src = this.user.avatarUrl.startsWith('http') 
         ? this.user.avatarUrl 
-        : `http://localhost:5000${this.user.avatarUrl}`;
+        : `${import.meta.env.VITE_API_URL}${this.user.avatarUrl}`;
       avatar.alt = 'Avatar del usuario';
       avatarContainer.appendChild(avatar);
     } else {
@@ -282,7 +282,7 @@ export default class Profile {
           const newAvatar = document.createElement('img');
           newAvatar.src = response.avatarUrl.startsWith('http') 
             ? response.avatarUrl 
-            : `http://localhost:5000${response.avatarUrl}`;
+            : `${import.meta.env.VITE_API_URL}${response.avatarUrl}`;
           newAvatar.alt = 'Avatar del usuario';
           
           // Insertarlo antes del botón de subida
@@ -294,7 +294,7 @@ export default class Profile {
           if (avatar) {
             avatar.src = response.avatarUrl.startsWith('http') 
               ? response.avatarUrl 
-              : `http://localhost:5000${response.avatarUrl}`;
+              : `${import.meta.env.VITE_API_URL}${response.avatarUrl}`;
           }
         }
         
