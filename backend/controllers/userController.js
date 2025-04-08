@@ -102,9 +102,19 @@ exports.uploadAvatar = async (req, res) => {
     console.log('Avatar actualizado correctamente. Nueva URL:', avatarUrl);
     console.log('Ruta completa del archivo:', path.join(__dirname, '..', avatarUrl));
 
+    // Configurar cabeceras para evitar problemas CORS
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+
+    // Añadir URL completa del servidor en entorno de producción con ruta de API para evitar CORS
+    const apiAvatarUrl = `/api/uploads/avatars/${req.file.filename}`;
+    const fullAvatarUrl = process.env.NODE_ENV === 'production' 
+      ? `${process.env.API_URL}${apiAvatarUrl}`
+      : apiAvatarUrl;
+
     return res.status(200).json({
       success: true,
-      avatarUrl: user.avatarUrl,
+      avatarUrl: fullAvatarUrl,
       message: 'Avatar actualizado correctamente'
     });
   } catch (error) {

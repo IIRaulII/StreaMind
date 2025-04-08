@@ -382,9 +382,19 @@ exports.uploadMoviePoster = async (req, res) => {
     movie.posterUrl = `/uploads/posters/${req.file.filename}`;
     await movie.save();
 
+    // Configurar cabeceras para evitar problemas CORS
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+
+    // Añadir URL completa del servidor en entorno de producción con ruta de API para evitar CORS
+    const apiPosterUrl = `/api/uploads/posters/${req.file.filename}`;
+    const fullPosterUrl = process.env.NODE_ENV === 'production' 
+      ? `${process.env.API_URL}${apiPosterUrl}`
+      : apiPosterUrl;
+
     return res.status(200).json({
       success: true,
-      posterUrl: movie.posterUrl,
+      posterUrl: fullPosterUrl,
       message: 'Póster actualizado correctamente'
     });
   } catch (error) {

@@ -4,6 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const path = require('path');
 const dotenv = require('dotenv');
+const fs = require('fs');
 
 // Cargar variables de entorno
 dotenv.config();
@@ -24,7 +25,7 @@ app.use(express.json());
 
 // Configurar CORS según el entorno
 const allowedOrigins = process.env.NODE_ENV === 'production'
-  ? ['https://streamind.netlify.app', process.env.FRONTEND_URL]
+  ? ['https://streamind.netlify.app', process.env.FRONTEND_URL, '*']
   : ['http://localhost:5173', 'http://localhost:3000', '*'];
 
 app.use(cors({
@@ -41,6 +42,7 @@ app.use(cors({
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['Content-Disposition'],
   credentials: true
 }));
 
@@ -66,11 +68,39 @@ app.get('/favicon.ico', (req, res) => {
 // Primero configuramos los uploads para mayor prioridad
 app.use('/uploads', (req, res, next) => {
   console.log('Acceso a archivo estático:', req.url);
+  // Establecer cabeceras CORS específicas para archivos
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Cross-Origin-Resource-Policy', 'cross-origin');
+  res.header('Cross-Origin-Embedder-Policy', 'credentialless');
+  res.header('Cross-Origin-Opener-Policy', 'same-origin');
   next();
 }, express.static(path.join(__dirname, 'uploads'), {
   maxAge: '1d',  // Cache de 1 día
   fallthrough: true // Continuar al siguiente middleware si no se encuentra el archivo
 }));
+
+// Ruta específica para avatares (para evitar problemas de CORS)
+app.get('/api/uploads/:type/:filename', (req, res) => {
+  const { type, filename } = req.params;
+  const filePath = path.join(__dirname, 'uploads', type, filename);
+  
+  // Comprobar si el archivo existe
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).json({ 
+      success: false, 
+      message: 'Archivo no encontrado' 
+    });
+  }
+  
+  // Establecer headers correctos para evitar problemas CORS
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Cross-Origin-Resource-Policy', 'cross-origin');
+  res.header('Cross-Origin-Embedder-Policy', 'credentialless');
+  res.header('Cross-Origin-Opener-Policy', 'same-origin');
+  
+  // Enviar el archivo
+  res.sendFile(filePath);
+});
 
 app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
 app.use('/test', express.static(path.join(__dirname, 'public')));
