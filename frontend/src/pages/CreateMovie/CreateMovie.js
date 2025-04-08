@@ -299,11 +299,11 @@ export default class CreateMovie {
       }
       
       // Redirigir a la página de detalles
-      notifications.show('success', '¡Película creada con éxito!');
+      notifications.showSuccess('¡Película creada con éxito!');
       this.router.navigate(`/movie/${movieId}`);
     } catch (error) {
       console.error('Error al crear la película:', error);
-      notifications.show('error', `Error al crear la película: ${error.message || 'Error desconocido'}`);
+      notifications.showError(`Error al crear la película: ${error.message || 'Error desconocido'}`);
       
       // Rehabilitar el botón
       submitButton.disabled = false;
