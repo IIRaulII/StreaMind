@@ -111,6 +111,11 @@ exports.uploadAvatar = async (req, res) => {
     const fullAvatarUrl = process.env.NODE_ENV === 'production' 
       ? `${process.env.API_URL}${apiAvatarUrl}`
       : apiAvatarUrl;
+    
+    // Log de depuración
+    console.log('API_URL:', process.env.API_URL);
+    console.log('API Avatar URL:', apiAvatarUrl);
+    console.log('Full Avatar URL:', fullAvatarUrl);
 
     return res.status(200).json({
       success: true,

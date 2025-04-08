@@ -391,6 +391,11 @@ exports.uploadMoviePoster = async (req, res) => {
     const fullPosterUrl = process.env.NODE_ENV === 'production' 
       ? `${process.env.API_URL}${apiPosterUrl}`
       : apiPosterUrl;
+    
+    // Log de depuración
+    console.log('API_URL:', process.env.API_URL);
+    console.log('API Poster URL:', apiPosterUrl);
+    console.log('Full Poster URL:', fullPosterUrl);
 
     return res.status(200).json({
       success: true,
