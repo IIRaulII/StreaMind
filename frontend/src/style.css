@@ -48,6 +48,10 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  /* Mejorar desplazamiento en iOS */
+  -webkit-overflow-scrolling: touch;
+  /* Asegurar que el contenido es siempre scrollable */
+  overflow-y: auto;
 }
 
 /* Overlay oscuro sobre el fondo para mejorar la legibilidad */
@@ -139,6 +143,18 @@ input:focus, textarea:focus, select:focus {
   display: none;
 }
 
+/* Clase para cuando el menú móvil está abierto */
+body.menu-open {
+  height: 100%;
+  overflow: hidden;
+}
+
+body.menu-open .nav-links.active {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  height: 100vh;
+}
+
 .rating {
   color: var(--accent-color);
   font-size: 1.2rem;
@@ -171,6 +187,28 @@ input:focus, textarea:focus, select:focus {
 @media (max-width: 768px) {
   .container {
     padding: 0 var(--spacing-sm);
+  }
+  
+  /* Mejorar la experiencia de desplazamiento en móviles */
+  html, body {
+    position: relative;
+    overflow-x: hidden;
+    height: 100%;
+  }
+  
+  #app, .app-wrapper {
+    min-height: 100%;
+    position: relative;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevenir que elementos fixed bloqueen el scroll */
+  .notification, .modal, .dropdown-menu.active {
+    position: absolute;
+    top: auto;
+    left: auto;
+    transform: none;
   }
 }
 

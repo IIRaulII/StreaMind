@@ -86,10 +86,10 @@ export default class Header {
     
     if (this.isMobileMenuOpen) {
       navLinks.classList.add('active');
-      document.body.style.overflow = 'hidden'; // Prevenir scroll cuando el menú está abierto
+      document.body.classList.add('menu-open');
     } else {
       navLinks.classList.remove('active');
-      document.body.style.overflow = ''; // Restaurar scroll
+      document.body.classList.remove('menu-open');
     }
   }
   
