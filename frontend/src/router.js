@@ -25,6 +25,8 @@ export default class Router {
   // Navega a una ruta específica
   navigate(path) {
     window.history.pushState({}, '', path);
+    // Hacer scroll al inicio de la página cuando se navega
+    window.scrollTo(0, 0);
     return this.handleRoute(path);
   }
 
@@ -66,6 +68,9 @@ export default class Router {
       
       // Renderizar la nueva vista
       matchedRoute.callback(container, params);
+
+      // Hacer scroll al inicio de la página después de renderizar
+      window.scrollTo(0, 0);
     }
     
     return this;
