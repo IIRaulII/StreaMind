@@ -177,7 +177,7 @@ export default class Header {
         const avatar = document.createElement('img');
         avatar.src = user.avatarUrl.startsWith('http') 
           ? user.avatarUrl 
-          : `http://localhost:5000${user.avatarUrl}`;
+          : `${import.meta.env.VITE_API_URL}${user.avatarUrl}`;
         avatar.alt = 'Avatar';
         userAvatar.appendChild(avatar);
       } else {
